@@ -1,0 +1,11 @@
+bin/
+obj/
+*.sln.cache
+*.suo
+*.user
+Thumbs.db
+Source/TestResults/
+Build/Publish/
+Source/packages
+_Resharper.*
+StyleCop.Cache
