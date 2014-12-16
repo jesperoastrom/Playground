@@ -1,4 +1,4 @@
-﻿namespace TplPlayground.Console
+﻿namespace Playground
 {
     using System;
     using System.Diagnostics;

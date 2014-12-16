@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3D2F1E01-0323-4996-A9D1-3C739362007B}</ProjectGuid>
+    <ProjectGuid>{0248AFB7-0548-4A1F-B7E2-0102CC88F8F7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Playground</RootNamespace>
-    <AssemblyName>Playground.Threading.Console</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AssemblyName>Playgound.Configuration.Expansion.Dependent</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,22 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CancellationProgram.cs" />
-    <Compile Include="EventThreadProgram.cs" />
-    <Compile Include="EventThreadProgramWithBeginInvoke.cs" />
-    <Compile Include="EventThreadProgramWithTask.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="..\Playground.Configuration.Expansion\App.config">
+      <Link>App.config</Link>
+    </None>
+    <None Include="..\Playground.Configuration.Expansion\App.SPRINT.Transform.config">
+      <DependentUpon>App.config</DependentUpon>
+      <Link>App.SPRINT.Transform.config</Link>
+    </None>
+    <None Include="..\Playground.Configuration.Expansion\App.SPRINT.Generated.config">
+      <DependentUpon>App.SPRINT.Transform.config</DependentUpon>
+      <Link>App.SPRINT.Generated.config</Link>
+    </None>
+    <None Include="..\Playground.Configuration.Expansion\App.DIT.Transform.config">
+      <DependentUpon>App.config</DependentUpon>
+      <Link>App.DIT.Transform.config</Link>
+    </None>
+    <None Include="..\Playground.Configuration.Expansion\App.DIT.Generated.config">
+      <DependentUpon>App.DIT.Transform.config</DependentUpon>
+      <Link>App.DIT.Generated.config</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+  <UsingTask TaskName="TransformXml" AssemblyFile="$([MSBUILD]::Unescape($(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.14\tools\SlowCheetah.Xdt.dll))" />
   <Target Name="BeforeBuild">
+    <SlowCheetah.Xdt.TransformXml Source="..\Playground.Configuration.Expansion\App.config" Transform="..\Playground.Configuration.Expansion\App.SPRINT.Transform.config" Destination="..\Playground.Configuration.Expansion\App.SPRINT.Generated.config" />
+    <SlowCheetah.Xdt.TransformXml Source="..\Playground.Configuration.Expansion\App.config" Transform="..\Playground.Configuration.Expansion\App.DIT.Transform.config" Destination="..\Playground.Configuration.Expansion\App.DIT.Generated.config" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

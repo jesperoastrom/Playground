@@ -9,3 +9,4 @@ Build/Publish/
 Source/packages
 _Resharper.*
 StyleCop.Cache
+packages/*

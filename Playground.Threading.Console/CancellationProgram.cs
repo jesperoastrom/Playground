@@ -1,4 +1,4 @@
-namespace TplPlayground.Console
+namespace Playground
 {
     using System;
     using System.Threading;
@@ -25,7 +25,7 @@ namespace TplPlayground.Console
             }
             catch (AggregateException ex)
             {
-                PrintDetails(ex);
+                this.PrintDetails(ex);
             }
 
             next.Wait();
@@ -64,7 +64,7 @@ namespace TplPlayground.Console
                 var innerAggregatedException = innerEx as AggregateException;
                 if (innerAggregatedException != null)
                 {
-                    PrintDetails(innerAggregatedException);
+                    this.PrintDetails(innerAggregatedException);
                 }
             }
         }
