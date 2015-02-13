@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CancellationProgram.cs" />
+    <Compile Include="ChangeTimerIntervalProgram.cs" />
+    <Compile Include="RecreateTimerProgram.cs" />
     <Compile Include="EventThreadProgram.cs" />
     <Compile Include="EventThreadProgramWithBeginInvoke.cs" />
     <Compile Include="EventThreadProgramWithTask.cs" />

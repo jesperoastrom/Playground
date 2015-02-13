@@ -9,7 +9,13 @@
         {
             var watch = Stopwatch.StartNew();
 
-            new CancellationProgram().Run();
+            //new CancellationProgram().Start();
+            var p = new ChangeTimerIntervalProgram();
+            //var p = new RecreateTimerProgram();
+            p.Start();
+
+            Console.ReadLine();
+            p.Stop();
 
             Console.WriteLine("*************************");
             Console.WriteLine("Elapsed time: {0}", watch.Elapsed);
